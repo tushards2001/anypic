@@ -16,6 +16,12 @@
 		526F2D431FCED80900E601CC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 526F2D421FCED80900E601CC /* main.m */; };
 		526F2D4D1FCED80900E601CC /* anypicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 526F2D4C1FCED80900E601CC /* anypicTests.m */; };
 		526F2D581FCED80900E601CC /* anypicUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 526F2D571FCED80900E601CC /* anypicUITests.m */; };
+		52B909C61FCFCD3D008BBAB9 /* AppConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B909C51FCFCD3D008BBAB9 /* AppConfig.m */; };
+		52B909C91FCFF4A2008BBAB9 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B909C81FCFF4A2008BBAB9 /* SearchViewController.m */; };
+		52B909CC1FCFF5EB008BBAB9 /* GalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B909CB1FCFF5EB008BBAB9 /* GalleryViewController.m */; };
+		52B909D81FD029F6008BBAB9 /* CustomSeguePushForward.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B909D71FD029F6008BBAB9 /* CustomSeguePushForward.m */; };
+		52B909DB1FD02A1B008BBAB9 /* CustomSeguePushBackward.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B909DA1FD02A1B008BBAB9 /* CustomSeguePushBackward.m */; };
+		CEDEEED0817DB9290059CA03 /* libPods-anypic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 041705B200ECC5DF37233104 /* libPods-anypic.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		041705B200ECC5DF37233104 /* libPods-anypic.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-anypic.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		526F2D2D1FCED80900E601CC /* anypic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = anypic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		526F2D301FCED80900E601CC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		526F2D311FCED80900E601CC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -53,6 +60,19 @@
 		526F2D531FCED80900E601CC /* anypicUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = anypicUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		526F2D571FCED80900E601CC /* anypicUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = anypicUITests.m; sourceTree = "<group>"; };
 		526F2D591FCED80900E601CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		526F2D661FCEF74B00E601CC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		52B909C41FCFCD3D008BBAB9 /* AppConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppConfig.h; sourceTree = "<group>"; };
+		52B909C51FCFCD3D008BBAB9 /* AppConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppConfig.m; sourceTree = "<group>"; };
+		52B909C71FCFF4A2008BBAB9 /* SearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		52B909C81FCFF4A2008BBAB9 /* SearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		52B909CA1FCFF5EB008BBAB9 /* GalleryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GalleryViewController.h; sourceTree = "<group>"; };
+		52B909CB1FCFF5EB008BBAB9 /* GalleryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GalleryViewController.m; sourceTree = "<group>"; };
+		52B909D61FD029F6008BBAB9 /* CustomSeguePushForward.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomSeguePushForward.h; sourceTree = "<group>"; };
+		52B909D71FD029F6008BBAB9 /* CustomSeguePushForward.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomSeguePushForward.m; sourceTree = "<group>"; };
+		52B909D91FD02A1B008BBAB9 /* CustomSeguePushBackward.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomSeguePushBackward.h; sourceTree = "<group>"; };
+		52B909DA1FD02A1B008BBAB9 /* CustomSeguePushBackward.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomSeguePushBackward.m; sourceTree = "<group>"; };
+		996456FF9B956D99ABDDAEF9 /* Pods-anypic.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-anypic.debug.xcconfig"; path = "Pods/Target Support Files/Pods-anypic/Pods-anypic.debug.xcconfig"; sourceTree = "<group>"; };
+		A89C6E4CA6516EF4AE29A911 /* Pods-anypic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-anypic.release.xcconfig"; path = "Pods/Target Support Files/Pods-anypic/Pods-anypic.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEDEEED0817DB9290059CA03 /* libPods-anypic.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +101,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1FBBB64FFE243145D706CA6D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				996456FF9B956D99ABDDAEF9 /* Pods-anypic.debug.xcconfig */,
+				A89C6E4CA6516EF4AE29A911 /* Pods-anypic.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		526F2D241FCED80900E601CC = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +117,8 @@
 				526F2D4B1FCED80900E601CC /* anypicTests */,
 				526F2D561FCED80900E601CC /* anypicUITests */,
 				526F2D2E1FCED80900E601CC /* Products */,
+				526F2D651FCEF74B00E601CC /* Frameworks */,
+				1FBBB64FFE243145D706CA6D /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,16 +135,26 @@
 		526F2D2F1FCED80900E601CC /* anypic */ = {
 			isa = PBXGroup;
 			children = (
+				526F2D391FCED80900E601CC /* anypic.xcdatamodeld */,
+				52B909C41FCFCD3D008BBAB9 /* AppConfig.h */,
+				52B909C51FCFCD3D008BBAB9 /* AppConfig.m */,
 				526F2D301FCED80900E601CC /* AppDelegate.h */,
 				526F2D311FCED80900E601CC /* AppDelegate.m */,
+				526F2D3C1FCED80900E601CC /* Assets.xcassets */,
+				52B909CA1FCFF5EB008BBAB9 /* GalleryViewController.h */,
+				52B909CB1FCFF5EB008BBAB9 /* GalleryViewController.m */,
+				526F2D411FCED80900E601CC /* Info.plist */,
+				526F2D3E1FCED80900E601CC /* LaunchScreen.storyboard */,
+				526F2D421FCED80900E601CC /* main.m */,
+				526F2D361FCED80900E601CC /* Main.storyboard */,
+				52B909C71FCFF4A2008BBAB9 /* SearchViewController.h */,
+				52B909C81FCFF4A2008BBAB9 /* SearchViewController.m */,
 				526F2D331FCED80900E601CC /* ViewController.h */,
 				526F2D341FCED80900E601CC /* ViewController.m */,
-				526F2D361FCED80900E601CC /* Main.storyboard */,
-				526F2D3C1FCED80900E601CC /* Assets.xcassets */,
-				526F2D3E1FCED80900E601CC /* LaunchScreen.storyboard */,
-				526F2D411FCED80900E601CC /* Info.plist */,
-				526F2D421FCED80900E601CC /* main.m */,
-				526F2D391FCED80900E601CC /* anypic.xcdatamodeld */,
+				52B909D61FD029F6008BBAB9 /* CustomSeguePushForward.h */,
+				52B909D71FD029F6008BBAB9 /* CustomSeguePushForward.m */,
+				52B909D91FD02A1B008BBAB9 /* CustomSeguePushBackward.h */,
+				52B909DA1FD02A1B008BBAB9 /* CustomSeguePushBackward.m */,
 			);
 			path = anypic;
 			sourceTree = "<group>";
@@ -135,6 +177,15 @@
 			path = anypicUITests;
 			sourceTree = "<group>";
 		};
+		526F2D651FCEF74B00E601CC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				526F2D661FCEF74B00E601CC /* Foundation.framework */,
+				041705B200ECC5DF37233104 /* libPods-anypic.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -142,9 +193,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 526F2D5C1FCED80900E601CC /* Build configuration list for PBXNativeTarget "anypic" */;
 			buildPhases = (
+				7571CE9BC5D6E4434C4B0B9C /* [CP] Check Pods Manifest.lock */,
 				526F2D291FCED80900E601CC /* Sources */,
 				526F2D2A1FCED80900E601CC /* Frameworks */,
 				526F2D2B1FCED80900E601CC /* Resources */,
+				D29D1AAC517C08A89F608DD8 /* [CP] Embed Pods Frameworks */,
+				A0C015EFFBB57C4B099EF334 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -263,6 +317,57 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		7571CE9BC5D6E4434C4B0B9C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-anypic-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A0C015EFFBB57C4B099EF334 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-anypic/Pods-anypic-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D29D1AAC517C08A89F608DD8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-anypic/Pods-anypic-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		526F2D291FCED80900E601CC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -270,8 +375,13 @@
 			files = (
 				526F2D3B1FCED80900E601CC /* anypic.xcdatamodeld in Sources */,
 				526F2D351FCED80900E601CC /* ViewController.m in Sources */,
+				52B909D81FD029F6008BBAB9 /* CustomSeguePushForward.m in Sources */,
 				526F2D431FCED80900E601CC /* main.m in Sources */,
+				52B909C61FCFCD3D008BBAB9 /* AppConfig.m in Sources */,
+				52B909C91FCFF4A2008BBAB9 /* SearchViewController.m in Sources */,
+				52B909CC1FCFF5EB008BBAB9 /* GalleryViewController.m in Sources */,
 				526F2D321FCED80900E601CC /* AppDelegate.m in Sources */,
+				52B909DB1FD02A1B008BBAB9 /* CustomSeguePushBackward.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,29 +542,33 @@
 		};
 		526F2D5D1FCED80900E601CC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 996456FF9B956D99ABDDAEF9 /* Pods-anypic.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 845YHJXAK5;
 				INFOPLIST_FILE = anypic/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.basicdas.anypic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		526F2D5E1FCED80900E601CC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A89C6E4CA6516EF4AE29A911 /* Pods-anypic.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 845YHJXAK5;
 				INFOPLIST_FILE = anypic/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.basicdas.anypic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

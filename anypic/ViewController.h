@@ -7,6 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "AppConfig.h"
+
+
 
 @interface ViewController : UIViewController
 
