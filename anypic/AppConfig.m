@@ -47,9 +47,11 @@ static AppConfig *sharedHelper = nil;
 
 #pragma mark - Unsplash API Methods
 
-- (void)UnsplashSearchPhotoByKeyword:(NSString *)keyword
+- (void)UnsplashSearchPhotoByKeyword:(NSString *)keyword page:(int)page
 {
-    NSString *postURL = [NSString stringWithFormat:@"%@/search/photos?page=1&query=%@&client_id=%@&per_page=%d", API_URL, keyword, APP_ID, RESULTS_PER_PAGE];
+    NSString *postURL = [NSString stringWithFormat:@"%@/search/photos?page=1&query=%@&client_id=%@&per_page=%d&page=%d", API_URL, keyword, APP_ID, RESULTS_PER_PAGE, page];
+    
+    NSLog(@"postURL = %@", postURL);
     
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:postURL]
                                                 cachePolicy:NSURLRequestUseProtocolCachePolicy
@@ -85,10 +87,10 @@ static AppConfig *sharedHelper = nil;
                                                         {
                                                             // Success Parsing JSON
                                                             // Log NSDictionary response:
-                                                            NSArray *arrayResult = [jsonResponse objectForKey:@"results"];
-                                                            NSLog(@"Total Pages: %@", [jsonResponse objectForKey:@"total_pages"]);
-                                                            NSLog(@"Total Photos: %@", [jsonResponse objectForKey:@"total"]);
-                                                            NSLog(@"Results[%ld]", arrayResult.count);
+                                                            //NSArray *arrayResult = [jsonResponse objectForKey:@"results"];
+                                                            //NSLog(@"Total Pages: %@", [jsonResponse objectForKey:@"total_pages"]);
+                                                            //NSLog(@"Total Photos: %@", [jsonResponse objectForKey:@"total"]);
+                                                            //NSLog(@"Results[%ld]", arrayResult.count);
                                                             
                                                             [[NSNotificationCenter defaultCenter] postNotificationName:@"UnsplashSearchResultNotification"
                                                                                                                 object:nil

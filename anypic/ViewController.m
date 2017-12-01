@@ -43,11 +43,7 @@
 
 
 
-- (void)searchPhoto
-{
-    [self addNotificationObserverForPhotoSearch];
-    [[AppConfig sharedInstance] UnsplashSearchPhotoByKeyword:@"food"];
-}
+
 
 - (void)UnsplashSearchResultNotification:(NSNotification *)notification
 {
