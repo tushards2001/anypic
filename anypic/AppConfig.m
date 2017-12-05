@@ -7,6 +7,8 @@
 //
 
 #import "AppConfig.h"
+#import "NSArray+NullReplacement.h"
+#import "NSDictionary+NullReplacement.h"
 
 @implementation AppConfig
 
@@ -45,6 +47,8 @@ static AppConfig *sharedHelper = nil;
     return date;
 }
 
+
+
 #pragma mark - Unsplash API Methods
 
 - (void)UnsplashSearchPhotoByKeyword:(NSString *)keyword page:(int)page
@@ -66,7 +70,7 @@ static AppConfig *sharedHelper = nil;
                                                         NSMutableDictionary *userInfo = [[NSMutableDictionary alloc] init];
                                                         [userInfo setObject:[error localizedDescription] forKey:@"error"];
                                                         [[NSNotificationCenter defaultCenter] postNotificationName:@"UnsplashSearchErrorNotification"
-                                                                                                            object:nil
+                                                                                                            object:0
                                                                                                           userInfo:userInfo];
                                                     }
                                                     else
@@ -90,11 +94,11 @@ static AppConfig *sharedHelper = nil;
                                                             //NSArray *arrayResult = [jsonResponse objectForKey:@"results"];
                                                             //NSLog(@"Total Pages: %@", [jsonResponse objectForKey:@"total_pages"]);
                                                             //NSLog(@"Total Photos: %@", [jsonResponse objectForKey:@"total"]);
-                                                            //NSLog(@"Results[%ld]", arrayResult.count);
+                                                            //NSLog(@"Results = %@", [jsonResponse objectForKey:@"results"]);
                                                             
                                                             [[NSNotificationCenter defaultCenter] postNotificationName:@"UnsplashSearchResultNotification"
                                                                                                                 object:nil
-                                                                                                              userInfo:jsonResponse];
+                                                                                                              userInfo:[jsonResponse dictionaryByReplacingNullsWithBlanks]];
                                                         }
                                                     }
                                                 }];
@@ -145,5 +149,122 @@ static AppConfig *sharedHelper = nil;
                                                 }];
     [dataTask resume];
 }
+
+
+
+#pragma mark - FileManager
+
+- (BOOL)collectionPLISTCreated
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0]; // Get documents folder
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"/%@", COLLECTION_PLIST]];
+    
+    if ([FCFileManager isFileItemAtPath:path])
+    {
+        return YES;
+    }
+    else
+    {
+        return NO;
+    }
+}
+
+- (BOOL)createCollectionPLIST
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0]; // Get documents folder
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"/%@", COLLECTION_PLIST]];
+    NSLog(@"path = %@", path);
+    
+    NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
+    NSMutableArray *collection = [[NSMutableArray alloc] init];
+    [data setObject:collection forKey:@"collection"];
+    
+    if ([data writeToFile:path atomically:YES])
+    {
+        return YES;
+    }
+    else
+    {
+        NSLog(@"Error creating %@ file", COLLECTION_PLIST);
+        return NO;
+    }
+
+    
+}
+
+- (NSDictionary *)getCollectionPLISTData
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0]; // Get documents folder
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"/%@", COLLECTION_PLIST]];
+    
+    
+    NSDictionary *data = [[NSDictionary alloc] initWithContentsOfFile:path];
+    return data;
+}
+
+- (BOOL)addDataToCollectionPLIST:(NSDictionary *)dictionary
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0]; // Get documents folder
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"/%@", COLLECTION_PLIST]];
+    
+    NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
+    NSMutableArray *array = [[NSMutableArray alloc] initWithArray:[data objectForKey:@"collection"]];
+    [array addObject:dictionary];
+    [data setObject:array forKey:@"collection"];
+    //NSMutableArray *array = [[NSMutableArray alloc] initWithArray:[self getCollectionPLISTData]];
+    //NSLog(@"array[%ld] = %@", array.count, array);
+    //[array addObject:data];
+    
+    NSError *error;
+    //check if file exists
+    if ([FCFileManager isFileItemAtPath:path])
+    {
+        if ([data writeToFile:path atomically:YES])
+        {
+            NSLog(@"DATA WRITTEN SUCCESSFULLY TO %@", COLLECTION_PLIST);
+            // %@", data);
+            return YES;
+        }
+        else
+        {
+            NSLog(@"Error writing to %@ file:\n%@", COLLECTION_PLIST, error.localizedDescription);
+            return NO;
+        }
+    }
+    else
+    {
+        NSLog(@"FILE DOES NOT EXIST");
+        return NO;
+    }
+    
+}
+
+- (BOOL)saveImage:(UIImage *)image imageId:(NSString *)imageId suffix:(NSString *)suffix
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0]; // Get documents folder
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"/%@_%@.jpg", imageId, suffix]];
+    
+    NSData *pngData = UIImageJPEGRepresentation(image, 1.0);
+    
+    return [pngData writeToFile:path atomically:YES];;
+}
+
+- (UIImage *)getImageById:(NSString *)imageId suffix:(NSString *)suffix
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0]; // Get documents folder
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"/%@_%@.jpg", imageId, suffix]];
+    
+    NSData *pngData = [NSData dataWithContentsOfFile:path];
+    UIImage *image = [UIImage imageWithData:pngData];
+    
+    return image;
+}
+
 
 @end

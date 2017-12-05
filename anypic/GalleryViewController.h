@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppConfig.h"
+#import "CustomCell.h"
 
-@interface GalleryViewController : UIViewController
+@interface GalleryViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource>
 {
-    
+    NSArray *collectionArray;
 }
 
 - (IBAction)actionShowSearch:(UIButton *)sender;

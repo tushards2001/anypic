@@ -40,6 +40,8 @@
     
     // footer view
     [self hideFooter];
+    
+    [self.photoCollectionView registerNib:[UINib nibWithNibName:@"CustomCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:[CustomCell reuseIdentifier]];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle
@@ -125,7 +127,9 @@
         }
     });
     
-    NSDictionary *result = [notification userInfo];
+    //NSDictionary *result = [notification userInfo];
+    NSMutableDictionary *result = [[NSMutableDictionary alloc] initWithDictionary:[notification userInfo]];
+    //NSLog(@"----------------------- result -------------------------\n%@\n----------------------------------------------", result);
     
     searchResultCount = [[result objectForKey:@"total"] intValue];
     totalPages = [[result objectForKey:@"total_pages"] intValue];
@@ -184,7 +188,39 @@
 {
     [self.tfSearchField resignFirstResponder];
     
-    [self performSegueWithIdentifier:@"segue_gallery" sender:nil];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
+        if (status == PHAuthorizationStatusAuthorized)
+        {
+            //We have permission. Do whatever is needed
+            [self performSegueWithIdentifier:@"segue_gallery" sender:nil];
+        }
+        else
+        {
+            //No permission. Trying to normally request it
+            [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+                if (status != PHAuthorizationStatusAuthorized)
+                {
+                    //User don't give us permission. Showing alert with redirection to settings
+                    //Getting description string from info.plist file
+                    NSString *accessDescription = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"NSPhotoLibraryUsageDescription"];
+                    UIAlertController * alertController = [UIAlertController alertControllerWithTitle:accessDescription message:@"To give permissions tap on 'Change Settings' button" preferredStyle:UIAlertControllerStyleAlert];
+                    
+                    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+                    [alertController addAction:cancelAction];
+                    
+                    UIAlertAction *settingsAction = [UIAlertAction actionWithTitle:@"Change Settings" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+                    }];
+                    [alertController addAction:settingsAction];
+                    
+                    [self presentViewController:alertController animated:YES completion:nil];
+                }
+            }];
+        }
+    });
+    
+    
 }
 
 - (void)addNotificationObserverForPhotoSearch
@@ -326,12 +362,14 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cvCell" forIndexPath:indexPath];
+    CustomCell *cell = (CustomCell *)[collectionView dequeueReusableCellWithReuseIdentifier:[CustomCell reuseIdentifier] forIndexPath:indexPath];
+    /*UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cvCell" forIndexPath:indexPath];
     
-    UIImageView *thumbnailImageView = (UIImageView *)[cell viewWithTag:1];
+    UIImageView *thumbnailImageView = (UIImageView *)[cell viewWithTag:1];*/
     
-    NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
-    dictionary = [arraySearchResult objectAtIndex:indexPath.row];
+    NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] initWithDictionary:[arraySearchResult objectAtIndex:indexPath.row]];
+    //NSLog(@"dictionary = %@", dictionary);
+    //dictionary = [arraySearchResult objectAtIndex:indexPath.row];
     NSMutableDictionary *urlDictionary = [[NSMutableDictionary alloc] initWithDictionary:[dictionary objectForKey:@"urls"]];
     
     
@@ -340,12 +378,12 @@
     /*[thumbnailImageView sd_setImageWithURL:posterURL
                                 placeholderImage:[UIImage imageNamed:@"placeholder"]];*/
     
-    [thumbnailImageView sd_setImageWithURL:posterURL
+    [cell.thumbnailImageView sd_setImageWithURL:posterURL
                           placeholderImage:[UIImage imageNamed:@"placeholder"]
                                    options:SDWebImageProgressiveDownload|SDWebImageContinueInBackground];
     
-    [thumbnailImageView.layer setBorderColor:[UIColor whiteColor].CGColor];
-    [thumbnailImageView.layer setBorderWidth:0.5f];
+    [cell.thumbnailImageView.layer setBorderColor:[UIColor whiteColor].CGColor];
+    [cell.thumbnailImageView.layer setBorderWidth:0.5f];
     
     
     return cell;
@@ -423,29 +461,106 @@
     return reusableview;
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"segue_fullimage"])
+    {
+        FullImageViewController *vc = [segue destinationViewController];
+        vc.resultDictionary = (NSDictionary *)sender;
+        vc.type = SEGUE_TYPE_ONLINE;
+    }
+}
+
 
 #pragma mark - UICollectionViewDelegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cvCell" forIndexPath:indexPath];
+    NSLog(@"show image");
     
-    UICollectionViewLayoutAttributes *attributes = [collectionView layoutAttributesForItemAtIndexPath:indexPath];
-    CGRect cellRect = attributes.frame;
+    NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] initWithDictionary:[arraySearchResult objectAtIndex:indexPath.row]];
+    //dictionary = [arraySearchResult objectAtIndex:indexPath.row];
+    //NSLog(@"-------- self.resultDictionary ---------\n%@", dictionary);
     
-    //CGRect cellFrameInSuperview = [collectionView convertRect:cellRect toView:[collectionView superview]];
-    CGRect cellFrameInSuperview = [cell convertRect:cell.frame toView:self.view];
-    CGPoint cellPointInSuperview = [cell convertPoint:cell.center fromView:self.view];
+    [self performSegueWithIdentifier:@"segue_fullimage" sender:dictionary];
     
-    ImageViewer *imageView = [[ImageViewer alloc] initWithFrame:cellFrameInSuperview];
-    [self.view addSubview:imageView];
-    imageView.center = cellPointInSuperview;
+    /*ImageViewer *imageViewer = [[ImageViewer alloc] initWithFrame:self.view.frame resultDictionary:dictionary];
+    [self.view addSubview:imageViewer];*/
+    
+    /*UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cvCell" forIndexPath:indexPath];
+    
+    UICollectionViewLayoutAttributes * theAttributes = [collectionView layoutAttributesForItemAtIndexPath:indexPath];
+    
+    CGRect cellFrameInSuperview = [collectionView convertRect:theAttributes.frame toView:[collectionView superview]];
+    
+    
+    ImageViewer *imageViewer = [[ImageViewer alloc] initWithFrame:cellFrameInSuperview];
+    [self.view addSubview:imageViewer];
+    imageViewer.imageView.contentMode = UIViewContentModeScaleAspectFill;
+    imageViewer.imageView.clipsToBounds = YES;
+    
+    NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
+    dictionary = [arraySearchResult objectAtIndex:indexPath.row];
+    NSMutableDictionary *urlDictionary = [[NSMutableDictionary alloc] initWithDictionary:[dictionary objectForKey:@"urls"]];
+    
+    
+    NSURL *posterURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@", [urlDictionary objectForKey:@"thumb"]]];
+    
+    [thumbnailImageView sd_setImageWithURL:posterURL
+     placeholderImage:[UIImage imageNamed:@"placeholder"]];
+    
+    [imageViewer.imageView sd_setImageWithURL:posterURL
+                          placeholderImage:[UIImage imageNamed:@"placeholder"]
+                                   options:SDWebImageProgressiveDownload|SDWebImageContinueInBackground];
+    
     [UIView animateWithDuration:2.0 animations:^{
-        imageView.frame =  self.view.frame;
-        imageView.center = self.view.center;
+        imageViewer.frame =  self.view.frame;
+        //imageViewer.center = self.view.center;
     } completion:^(BOOL finished) {
-    }];
+    }];*/
+    
+    /*CustomCell *cell = (CustomCell *)[collectionView dequeueReusableCellWithReuseIdentifier:[CustomCell reuseIdentifier] forIndexPath:indexPath];
+    
+    UICollectionViewLayoutAttributes * theAttributes = [collectionView layoutAttributesForItemAtIndexPath:indexPath];
+    CGRect cellFrameInSuperview = [collectionView convertRect:theAttributes.frame toView:[collectionView superview]];
+    
+    ImageViewer *imageViewer = [[ImageViewer alloc] initWithFrame:self.view.bounds];
+    [self.view addSubview:imageViewer];
+    //imageViewer.imageView.contentMode = UIViewContentModeScaleAspectFill;
+    imageViewer.originalImageRect = cellFrameInSuperview;
+    //imageViewer.imageView.clipsToBounds = YES;
+    //[imageViewer showImageFrom:cell.thumbnailImageView img:cell.thumbnailImageView.image];
+    NSLog(@"%@", cell.thumbnailImageView.image?@"Yes":@"No");*/
+    
+    
+    
+    
+    
+    /*UIImageView *iv = [[UIImageView alloc] init];
+    [imageViewer addSubview:iv];
+    iv.frame = cellFrameInSuperview;
+    iv.contentMode = UIViewContentModeScaleAspectFit;
+    iv.clipsToBounds = YES;
+    
+    NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
+    dictionary = [arraySearchResult objectAtIndex:indexPath.row];
+    NSMutableDictionary *urlDictionary = [[NSMutableDictionary alloc] initWithDictionary:[dictionary objectForKey:@"urls"]];
+    
+    
+    NSURL *posterURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@", [urlDictionary objectForKey:@"thumb"]]];
+    
+    [iv sd_setImageWithURL:posterURL
+                             placeholderImage:[UIImage imageNamed:@"placeholder"]
+                                      options:SDWebImageProgressiveDownload|SDWebImageContinueInBackground];
+    
+    [UIView animateWithDuration:4.0 animations:^{
+        iv.frame = self.view.bounds;
+        iv.layer.transform = CATransform3DIdentity;
+    } completion:^(BOOL finished) {
+        
+    }];*/
 }
+
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {

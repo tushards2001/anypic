@@ -10,7 +10,8 @@
 #import "AppConfig.h"
 #import <MBProgressHUD.h>
 #import <SDWebImage/UIImageView+WebCache.h>
-#import "ImageViewer.h"
+#import "CustomCell.h"
+#import "FullImageViewController.h"
 
 @interface SearchViewController : UIViewController <UITextFieldDelegate, MBProgressHUDDelegate, UICollectionViewDelegate, UICollectionViewDataSource>
 {

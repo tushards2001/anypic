@@ -21,14 +21,69 @@
     
     //[self authorizeApp];
     //[self searchPhoto];
+    
+    //delete later
+    /*NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0]; // Get documents folder
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"/%@", COLLECTION_PLIST]];
+    
+    [FCFileManager removeFilesInDirectoryAtPath:documentsDirectory];
+    
+    if ([FCFileManager isFileItemAtPath:path])
+    {
+        NSError *error;
+        
+        if ([FCFileManager removeItemAtPath:path error:&error])
+        {
+            NSLog(@"%@ DELETED", COLLECTION_PLIST);
+        }
+        else
+        {
+            NSLog(@"FAILED TO DELETE %@", COLLECTION_PLIST);
+        }
+    }*/
+    //delete later
+    
+    if ([[AppConfig sharedInstance] collectionPLISTCreated])
+    {
+        NSLog(@"%@ FILE EXISTS", COLLECTION_PLIST);
+        [self performSelector:@selector(showSearchVC:) withObject:nil afterDelay:1.0f];
+    }
+    else
+    {
+        NSLog(@"%@ FILE DOES NOT EXISTS.", COLLECTION_PLIST);
+        if ([[AppConfig sharedInstance] createCollectionPLIST])
+        {
+            NSLog(@"%@ FILE CREATED SUCCESSFULLY", COLLECTION_PLIST);
+            [self performSelector:@selector(showSearchVC:) withObject:nil afterDelay:1.0f];
+        }
+        else
+        {
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                                     message:@"Could not create user file"
+                                                                              preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction *actionOK = [UIAlertAction actionWithTitle:@"OK"
+                                                               style:UIAlertActionStyleDefault
+                                                             handler:^(UIAlertAction * _Nonnull action) {
+                                                                 [self.navigationController popViewControllerAnimated:YES];
+                                                             }];
+            
+            [alertController addAction:actionOK];
+            
+            [self presentViewController:alertController animated:YES completion:nil];
+        }
+    }
 }
 
 
 
-- (void)viewDidAppear:(BOOL)animated
+
+
+/*- (void)viewDidAppear:(BOOL)animated
 {
     [self performSelector:@selector(showSearchVC:) withObject:nil afterDelay:1.0f];
-}
+}*/
 
 - (void)showSearchVC:(id)sender
 {

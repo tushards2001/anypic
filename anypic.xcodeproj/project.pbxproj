@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5218F2361FD6647700ABC3BB /* NSArray+NullReplacement.m in Sources */ = {isa = PBXBuildFile; fileRef = 5218F2331FD6647600ABC3BB /* NSArray+NullReplacement.m */; };
+		5218F2371FD6647700ABC3BB /* NSDictionary+NullReplacement.m in Sources */ = {isa = PBXBuildFile; fileRef = 5218F2351FD6647600ABC3BB /* NSDictionary+NullReplacement.m */; };
+		526258751FD524BD009B6B9D /* FullImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 526258741FD524BD009B6B9D /* FullImageViewController.m */; };
+		5268E0A21FD2C443004E6ADE /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5268E0A01FD2C443004E6ADE /* CustomCell.m */; };
+		5268E0A31FD2C443004E6ADE /* CustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5268E0A11FD2C443004E6ADE /* CustomCell.xib */; };
 		526F2D321FCED80900E601CC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 526F2D311FCED80900E601CC /* AppDelegate.m */; };
 		526F2D351FCED80900E601CC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 526F2D341FCED80900E601CC /* ViewController.m */; };
 		526F2D381FCED80900E601CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 526F2D361FCED80900E601CC /* Main.storyboard */; };
@@ -16,8 +21,6 @@
 		526F2D431FCED80900E601CC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 526F2D421FCED80900E601CC /* main.m */; };
 		526F2D4D1FCED80900E601CC /* anypicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 526F2D4C1FCED80900E601CC /* anypicTests.m */; };
 		526F2D581FCED80900E601CC /* anypicUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 526F2D571FCED80900E601CC /* anypicUITests.m */; };
-		52B7CBEF1FD1A003006B7DE8 /* ImageViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B7CBEE1FD1A003006B7DE8 /* ImageViewer.m */; };
-		52B7CBF11FD1A018006B7DE8 /* ImageViewer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52B7CBF01FD1A018006B7DE8 /* ImageViewer.xib */; };
 		52B909C61FCFCD3D008BBAB9 /* AppConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B909C51FCFCD3D008BBAB9 /* AppConfig.m */; };
 		52B909C91FCFF4A2008BBAB9 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B909C81FCFF4A2008BBAB9 /* SearchViewController.m */; };
 		52B909CC1FCFF5EB008BBAB9 /* GalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B909CB1FCFF5EB008BBAB9 /* GalleryViewController.m */; };
@@ -45,6 +48,15 @@
 
 /* Begin PBXFileReference section */
 		041705B200ECC5DF37233104 /* libPods-anypic.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-anypic.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5218F2321FD6647600ABC3BB /* NSDictionary+NullReplacement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+NullReplacement.h"; sourceTree = "<group>"; };
+		5218F2331FD6647600ABC3BB /* NSArray+NullReplacement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+NullReplacement.m"; sourceTree = "<group>"; };
+		5218F2341FD6647600ABC3BB /* NSArray+NullReplacement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+NullReplacement.h"; sourceTree = "<group>"; };
+		5218F2351FD6647600ABC3BB /* NSDictionary+NullReplacement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+NullReplacement.m"; sourceTree = "<group>"; };
+		526258731FD524BD009B6B9D /* FullImageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FullImageViewController.h; sourceTree = "<group>"; };
+		526258741FD524BD009B6B9D /* FullImageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FullImageViewController.m; sourceTree = "<group>"; };
+		5268E09F1FD2C443004E6ADE /* CustomCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
+		5268E0A01FD2C443004E6ADE /* CustomCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
+		5268E0A11FD2C443004E6ADE /* CustomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCell.xib; sourceTree = "<group>"; };
 		526F2D2D1FCED80900E601CC /* anypic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = anypic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		526F2D301FCED80900E601CC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		526F2D311FCED80900E601CC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -63,9 +75,6 @@
 		526F2D571FCED80900E601CC /* anypicUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = anypicUITests.m; sourceTree = "<group>"; };
 		526F2D591FCED80900E601CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		526F2D661FCEF74B00E601CC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		52B7CBED1FD1A003006B7DE8 /* ImageViewer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageViewer.h; sourceTree = "<group>"; };
-		52B7CBEE1FD1A003006B7DE8 /* ImageViewer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageViewer.m; sourceTree = "<group>"; };
-		52B7CBF01FD1A018006B7DE8 /* ImageViewer.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageViewer.xib; sourceTree = "<group>"; };
 		52B909C41FCFCD3D008BBAB9 /* AppConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppConfig.h; sourceTree = "<group>"; };
 		52B909C51FCFCD3D008BBAB9 /* AppConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppConfig.m; sourceTree = "<group>"; };
 		52B909C71FCFF4A2008BBAB9 /* SearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
@@ -140,6 +149,10 @@
 		526F2D2F1FCED80900E601CC /* anypic */ = {
 			isa = PBXGroup;
 			children = (
+				5218F2341FD6647600ABC3BB /* NSArray+NullReplacement.h */,
+				5218F2331FD6647600ABC3BB /* NSArray+NullReplacement.m */,
+				5218F2321FD6647600ABC3BB /* NSDictionary+NullReplacement.h */,
+				5218F2351FD6647600ABC3BB /* NSDictionary+NullReplacement.m */,
 				526F2D391FCED80900E601CC /* anypic.xcdatamodeld */,
 				52B909C41FCFCD3D008BBAB9 /* AppConfig.h */,
 				52B909C51FCFCD3D008BBAB9 /* AppConfig.m */,
@@ -160,9 +173,11 @@
 				52B909D71FD029F6008BBAB9 /* CustomSeguePushForward.m */,
 				52B909D91FD02A1B008BBAB9 /* CustomSeguePushBackward.h */,
 				52B909DA1FD02A1B008BBAB9 /* CustomSeguePushBackward.m */,
-				52B7CBED1FD1A003006B7DE8 /* ImageViewer.h */,
-				52B7CBEE1FD1A003006B7DE8 /* ImageViewer.m */,
-				52B7CBF01FD1A018006B7DE8 /* ImageViewer.xib */,
+				5268E09F1FD2C443004E6ADE /* CustomCell.h */,
+				5268E0A01FD2C443004E6ADE /* CustomCell.m */,
+				5268E0A11FD2C443004E6ADE /* CustomCell.xib */,
+				526258731FD524BD009B6B9D /* FullImageViewController.h */,
+				526258741FD524BD009B6B9D /* FullImageViewController.m */,
 			);
 			path = anypic;
 			sourceTree = "<group>";
@@ -303,8 +318,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5268E0A31FD2C443004E6ADE /* CustomCell.xib in Resources */,
 				526F2D401FCED80900E601CC /* LaunchScreen.storyboard in Resources */,
-				52B7CBF11FD1A018006B7DE8 /* ImageViewer.xib in Resources */,
 				526F2D3D1FCED80900E601CC /* Assets.xcassets in Resources */,
 				526F2D381FCED80900E601CC /* Main.storyboard in Resources */,
 			);
@@ -384,11 +399,14 @@
 			files = (
 				526F2D3B1FCED80900E601CC /* anypic.xcdatamodeld in Sources */,
 				526F2D351FCED80900E601CC /* ViewController.m in Sources */,
+				5218F2361FD6647700ABC3BB /* NSArray+NullReplacement.m in Sources */,
+				526258751FD524BD009B6B9D /* FullImageViewController.m in Sources */,
+				5268E0A21FD2C443004E6ADE /* CustomCell.m in Sources */,
 				52B909D81FD029F6008BBAB9 /* CustomSeguePushForward.m in Sources */,
-				52B7CBEF1FD1A003006B7DE8 /* ImageViewer.m in Sources */,
 				526F2D431FCED80900E601CC /* main.m in Sources */,
 				52B909C61FCFCD3D008BBAB9 /* AppConfig.m in Sources */,
 				52B909C91FCFF4A2008BBAB9 /* SearchViewController.m in Sources */,
+				5218F2371FD6647700ABC3BB /* NSDictionary+NullReplacement.m in Sources */,
 				52B909CC1FCFF5EB008BBAB9 /* GalleryViewController.m in Sources */,
 				526F2D321FCED80900E601CC /* AppDelegate.m in Sources */,
 				52B909DB1FD02A1B008BBAB9 /* CustomSeguePushBackward.m in Sources */,
